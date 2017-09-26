@@ -26,8 +26,8 @@ public class StudentServiceImpl implements StudentSevice{
 	}
 	
 	@Override
-	public void deleteStudent(Student student){
-		studentDAO.delete(student.getLogin());
+	public void deleteStudent(String login){
+		studentDAO.delete(login);
 	}
 	
 	@Override
