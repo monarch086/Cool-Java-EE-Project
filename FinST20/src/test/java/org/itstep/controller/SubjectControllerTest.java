@@ -62,6 +62,18 @@ public class SubjectControllerTest {
 
 	@Test
 	public void testDeleteSubject() {
+		Subject subject = new Subject();
+		subject.setSubject("javaEE");
+		
+		Mockito.doNothing().when(subjectService).deleteSubject(Mockito.<String>any());
+		
+		RequestEntity<Subject> request = null;
+		try {
+			request = new RequestEntity<Subject>(HttpMethod.POST, new URI("/subject"));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
 	
 		
 	}
