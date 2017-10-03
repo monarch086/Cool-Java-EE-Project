@@ -10,6 +10,7 @@ import org.itstep.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class StudentServiceImpl implements StudentService {
 	@Autowired
@@ -26,8 +27,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void deleteStudent(Student student) {
-		studentDAO.delete(student.getLogin());
+	public void deleteStudent(String login) {
+		studentDAO.delete(login);
 	}
 
 	@Override
@@ -39,5 +40,4 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> findAllStudentsByCourse(int course) {
 		return studentDAO.findAllStudentsByCourse(course);
 	}
-
 }
