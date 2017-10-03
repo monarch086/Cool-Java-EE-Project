@@ -7,6 +7,6 @@ public interface TeacherService {
 	public Teacher getTeacher(String login);
 
 	public Teacher createAndUpdateTeacher(Teacher teacher);
-
-	public void deleteTeacher(Teacher teacher);
+	
+	public void deleteTeacher(String login);
 }

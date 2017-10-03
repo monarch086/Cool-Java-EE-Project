@@ -2,7 +2,6 @@ package org.itstep.controller;
 
 import org.itstep.dao.pojo.Subject;
 import org.itstep.service.SubjectService;
-import org.itstep.dao.SubjectDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
