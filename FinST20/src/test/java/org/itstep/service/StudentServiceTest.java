@@ -17,20 +17,10 @@ public class StudentServiceTest {
 	
 	@Autowired
 	StudentService studentService;
+	
+	@Autowired
+	GroupService groupService;
 
-	@Test
-	public void testGetStudent() {
-		Student student = new Student();
-		student.setLogin("Vasiliy17");
-		student.setPassword("123456");
-		student.setFirstName("Vasiliy");
-		student.setLastName("Pupkin");
-		student.setGroupName("ST-20");
-		Student studentFromDB = studentService.save(student);
-		assertNotNull(studentFromDB);
-		Student checkedStudent = studentService.findOne(studentFromDB.getLastName());
-		assertEquals ("Pupkin", checkedStudent.getLastName());
-	}
 
 	@Test
 	public void testCreateAndUpdateStudent() {
@@ -40,11 +30,10 @@ public class StudentServiceTest {
 		student.setFirstName("Vasiliy");
 		student.setLastName("Pupkin");
 		student.setGroupName("ST-20");
-		Student studentFromDB = studentService.save(student);
-		assertNotNull(studentFromDB);
 		Student studentFromDB = studentService.createAndUpdateStudent(student);
-		Student chekedStudent = studentService.findOne(studentFromDB.getLogin());
-		assertEquals("Vasiliy17", studentFromDB.getLogin());
+		assertNotNull(studentFromDB);
+		Student checkedStudent = studentService.getStudent(studentFromDB.getLogin());
+		assertEquals("Vasiliy17", checkedStudent.getLogin());
 	}
 
 	@Test
@@ -55,9 +44,10 @@ public class StudentServiceTest {
 		student.setFirstName("Vasiliy");
 		student.setLastName("Pupkin");
 		student.setGroupName("ST-20");
-		Student studentFromDB = studentService.save(student);
-		studentService.deleteStudent(studentFromDB);
-	    assertNull (studentFromDB);
+		Student studentFromDB = studentService.createAndUpdateStudent(student);
+		studentService.deleteStudent(studentFromDB.getLogin());
+		Student checkedStudent = studentService.getStudent(studentFromDB.getLogin());
+	    assertNull (checkedStudent);
 	}
 
 	@Test
@@ -68,7 +58,7 @@ public class StudentServiceTest {
 		student.setFirstName("Vasiliy");
 		student.setLastName("Pupkin");
 		student.setGroupName("ST-20");
-		List<Student> studentList = studentService.findStudentsByGroup("ST20");
+		List<Student> studentList = studentService.findStudentsByGroup("ST-20");
 		assertTrue (!studentList.isEmpty());
 	}
 
@@ -80,9 +70,15 @@ public class StudentServiceTest {
 		student.setFirstName("Vasiliy");
 		student.setLastName("Pupkin");
 		student.setGroupName("ST-20");
-		List<Student> studentList = studentService.findAllStudentsByCourse(course);
+		Student studentFromDB = studentService.createAndUpdateStudent(student);
+		Group group = new Group();
+		group.setGroupName("ST-20");
+		group.setCourse(1);
+		Group groupDB = groupService.createAndUpdateGroup(group);
+		List<Student> studentList = studentService.findAllStudentsByCourse(1) ;
 		assertTrue(!studentList.isEmpty());
-					
+		studentService.deleteStudent(studentFromDB.getLogin());
+		groupService.deleteGroup(groupDB.getGroupName());
 	}
 
 }

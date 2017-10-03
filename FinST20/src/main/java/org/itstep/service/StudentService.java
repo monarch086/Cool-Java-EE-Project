@@ -12,7 +12,6 @@ public interface StudentService {
 	
 	public void deleteStudent(String login);
 
-
 	public List<Student> findStudentsByGroup(String group);
 	
 	public List<Student> findAllStudentsByCourse(int course);

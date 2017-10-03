@@ -62,6 +62,8 @@ public class SubjectControllerTest {
 
 	@Test
 	public void testDeleteSubject() {
+	
+		
 	}
 
 }
