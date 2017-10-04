@@ -54,10 +54,38 @@ public class SubjectControllerTest {
 
 	@Test
 	public void testUpdateSubject() {
+		Subject subject = new Subject();
+		subject.setSubject("javaEE");
+		
+		Mockito.when(subjectService.getSubject("javaEE")).thenReturn(null);
+		Mockito.when(subjectService.createAndUpdateSubject(Mockito.<Subject>any())).thenReturn(subject);
+		RequestEntity<Subject> request = null;
+		try {
+			request = new RequestEntity<Subject>(subject, HttpMethod.POST, new URI("/subject"));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<Subject> response = testRestTemplate.exchange(request, Subject.class);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		verify(subjectService, times(1)).createAndUpdateSubject(Mockito.<Subject>any());
 	}
 
 	@Test
 	public void testGetOneSubject() {
+		Subject subject = new Subject();
+		subject.setSubject("javaEE");
+		
+		Mockito.when(subjectService.getSubject("javaEE")).thenReturn(null);
+		Mockito.when(subjectService.getSubject(Mockito.anyString())).thenReturn(subject);
+		RequestEntity<Subject> request = null;
+		try {
+			request = new RequestEntity<Subject>(subject, HttpMethod.POST, new URI("/subject?subject=" + subject.getSubject()));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<Subject> response = testRestTemplate.exchange(request, Subject.class);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		verify(subjectService, times(1)).getSubject(Mockito.anyString());
 	}
 
 	@Test
