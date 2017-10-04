@@ -26,50 +26,52 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=App.class, webEnvironment = WebEnvironment.RANDOM_PORT )
+@SpringBootTest(classes = App.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 public class StudentControllerTest {
-@MockBean
-StudentService studentService;
-@Autowired
-TestRestTemplate testRestTemplate;
+	@MockBean
+	StudentService studentService;
+	@Autowired
+	TestRestTemplate testRestTemplate;
+
 	@Test
 	public void testCreateStudent() {
-		
+
 	}
 
 	@Test
 	public void testUpdateStudent() {
-		
+
 	}
 
 	@Test
 	public void testGetOneStudent() {
-		
+
 	}
 
 	@Test
 	public void testGetStudents() {
-		
+
 	}
 
 	@Test
 	public void testDeleteStudent() {
-	Student student = new Student();
-	student.setFirstName("Ivanvo");
-	student.setGroupName("st20");
-	student.setLastName("Ganett");
-	student.setLogin("IvIva");
-	student.setPassword("123456");
-	Mockito.doNothing().when(studentService).deleteStudent(Mockito.<String>any());
-	RequestEntity<Student> request = null;
-	try {
-		request = new RequestEntity<Student>(student, HttpMethod.DELETE, new URI("/student?student=" + student.getLogin()));
-	} catch (URISyntaxException e) {
+		Student student = new Student();
+		student.setFirstName("Ivanvo");
+		student.setGroupName("st20");
+		student.setLastName("Ganett");
+		student.setLogin("IvIva");
+		student.setPassword("123456");
+		Mockito.doNothing().when(studentService).deleteStudent(Mockito.<String>any());
+		RequestEntity<String> request = null;
+		try {
+			request = new RequestEntity<String>(HttpMethod.DELETE,
+					new URI("/student?studentName=" + student.getLogin()));
+		} catch (URISyntaxException e) {
 			e.printStackTrace();
-	}
-	ResponseEntity<Student> response = testRestTemplate.exchange(request, Student.class);
-	assertEquals(HttpStatus.OK, response.getStatusCode());
-	verify(studentService, times(1)).deleteStudent(Mockito.anyString());
 		}
+		ResponseEntity response = testRestTemplate.exchange(request, ResponseEntity.class);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		verify(studentService, times(1)).deleteStudent(Mockito.anyString());
+	}
 
 }
