@@ -3,9 +3,7 @@ package org.itstep.service;
 import static org.junit.Assert.*;
 import java.util.List;
 import org.itstep.App;
-import org.itstep.dao.StudentDAO;
 import org.itstep.dao.pojo.Group;
-import org.itstep.dao.pojo.Student;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
-
 public class GroupServiceTest {
 	
 	@Autowired
@@ -51,6 +48,8 @@ public class GroupServiceTest {
 		List<Group> groupList = groupService.findAllByCourse(1);
 		assertTrue(!groupList.isEmpty());
 		groupService.deleteGroup(groupFromDB.getGroupName());
+		
+		
 	}
 
 	@Test
