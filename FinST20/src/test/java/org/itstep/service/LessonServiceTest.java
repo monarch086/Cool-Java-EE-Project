@@ -77,7 +77,7 @@ public class LessonServiceTest {
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
 		List<Lesson> lessonFiltered = lessonService.getLessonsForCourseForPeriod(3, lesson.getLessonStart()-30000, lesson.getLessonStart()+lesson.getLength()+30000);
-		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getRoom());
+		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getTeacher());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 	@Test
