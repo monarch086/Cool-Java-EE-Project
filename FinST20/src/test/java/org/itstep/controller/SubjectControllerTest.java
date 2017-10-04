@@ -67,13 +67,13 @@ public class SubjectControllerTest {
 		
 		Mockito.doNothing().when(subjectService).deleteSubject(Mockito.<String>any());
 		
-		RequestEntity<Subject> request = null;
+		RequestEntity<String> request = null;
 		try {
-			request = new RequestEntity<Subject>(subject, HttpMethod.DELETE, new URI("/subject?subject=" + subject.getSubject()));
+			request = new RequestEntity<String>(HttpMethod.DELETE, new URI("/subject?subject=" + subject.getSubject()));
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		ResponseEntity<Subject> response = testRestTemplate.exchange(request, Subject.class);
+		ResponseEntity response = testRestTemplate.exchange(request, ResponseEntity.class);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		verify(subjectService, times(1)).deleteSubject(Mockito.anyString());
 		
