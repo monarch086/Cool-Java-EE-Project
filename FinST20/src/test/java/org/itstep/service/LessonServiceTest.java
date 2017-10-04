@@ -48,7 +48,7 @@ public class LessonServiceTest {
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
 		Lesson lessonFiltered = lessonService.getOneByGroupAndStartTime("ST-20", lessonFromDB.getLessonStart());
-		assertEquals("St-20", lessonFromDB.getLessonStart());
+		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getSubject());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 
@@ -63,7 +63,7 @@ public class LessonServiceTest {
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
 		Lesson lessonFiltered = lessonService.getOneByTeacherAndStartTime("Sasha", lessonFromDB.getLessonStart());
-		assertEquals("Sasha", lessonFromDB.getLessonStart());
+		assertEquals(lesson.getTeacher(),lesson.getLessonStart(), lesson.getSubject());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 	@Test
@@ -77,7 +77,7 @@ public class LessonServiceTest {
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
 		List<Lesson> lessonFiltered = lessonService.getLessonsForCourseForPeriod(3, lesson.getLessonStart()-30000, lesson.getLessonStart()+lesson.getLength()+30000);
-		assertEquals(lesson, lessonFiltered);
+		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getRoom());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 	@Test
@@ -91,9 +91,10 @@ public class LessonServiceTest {
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
 		List<Lesson> lessonFiltered = lessonService.getLessonsForTeacherForPeriod("Sasha", lesson.getLessonStart()-30000, lesson.getLessonStart()+lesson.getLength()+30000);
-		assertEquals(lesson, lessonFiltered);
+		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getTeacher());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 		
 		
 }
+
