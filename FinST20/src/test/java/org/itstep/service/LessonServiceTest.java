@@ -63,7 +63,7 @@ public class LessonServiceTest {
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
 		Lesson lessonFiltered = lessonService.getOneByTeacherAndStartTime("Sasha", lessonFromDB.getLessonStart());
-		assertEquals(lesson.getTeacher(),lesson.getLessonStart(), lesson.getSubject());
+		assertEquals(lesson.getTeacher(),lesson.getLessonStart(), lesson.getRoom());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 	@Test
