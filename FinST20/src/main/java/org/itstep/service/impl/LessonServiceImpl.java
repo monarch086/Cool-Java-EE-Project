@@ -31,26 +31,24 @@ public class LessonServiceImpl implements LessonService{
 
 	@Override
 	public Lesson getOneByTeacherAndStartTime(String teacher, Long startTime) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getOneByTeacherAndStartTime(teacher, startTime);
 	}
 
 	@Override
 	public List<Lesson> getLessonsForGroupForPeriod(String group, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getLessonsForGroupForPeriod(group, start, end);
+		
 	}
 
 	@Override
 	public List<Lesson> getLessonsForCourseForPeriod(Integer course, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getLessonsForCourseForPeriod(course, start, end);
+		
 	}
 
 	@Override
 	public List<Lesson> getLessonsForTeacherForPeriod(String teacher, Long start, Long end) {
-		// TODO Auto-generated method stub
-		return null;
+		return lessonDAO.getLessonsForPeriod(teacher, start, end);
 	}
 	
 	@Override
