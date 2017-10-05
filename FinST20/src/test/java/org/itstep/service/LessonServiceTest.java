@@ -47,8 +47,8 @@ public class LessonServiceTest {
 		lesson.setSubject("QA");
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
-		Lesson lessonFiltered = lessonService.getOneByGroupAndStartTime("ST-20", lessonFromDB.getLessonStart());
-		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getSubject());
+		Lesson lessonFiltered = lessonService.getOneByGroupAndStartTime(lessonFromDB.getGroup(), lessonFromDB.getLessonStart());
+		assertEquals(lesson.getGroup(), lessonFromDB.getGroup());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 
@@ -62,8 +62,8 @@ public class LessonServiceTest {
 		lesson.setSubject("QA");
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
-		Lesson lessonFiltered = lessonService.getOneByTeacherAndStartTime("Sasha", lessonFromDB.getLessonStart());
-		assertEquals(lesson.getTeacher(),lesson.getLessonStart(), lesson.getRoom());
+		Lesson lessonFiltered = lessonService.getOneByTeacherAndStartTime(lessonFromDB.getTeacher(), lessonFromDB.getLessonStart());
+		assertEquals(lesson.getTeacher(),lessonFromDB.getTeacher());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 	@Test
@@ -76,8 +76,8 @@ public class LessonServiceTest {
 		lesson.setSubject("QA");
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
-		List<Lesson> lessonFiltered = lessonService.getLessonsForCourseForPeriod(3, lesson.getLessonStart()-30000, lesson.getLessonStart()+lesson.getLength()+30000);
-		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getTeacher());
+		List<Lesson> lessonFiltered = lessonService.getLessonsForCourseForPeriod(3, lessonFromDB.getLessonStart()-30000, lessonFromDB.getLessonStart()+lesson.getLength()+30000);
+		assertEquals(lesson.getLessonStart(), lessonFromDB.getLessonStart());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 	@Test
@@ -90,8 +90,8 @@ public class LessonServiceTest {
 		lesson.setSubject("QA");
 		lesson.setTeacher("Sasha");
 		Lesson lessonFromDB = lessonService.saveAndUpdate(lesson);
-		List<Lesson> lessonFiltered = lessonService.getLessonsForTeacherForPeriod("Sasha", lesson.getLessonStart()-30000, lesson.getLessonStart()+lesson.getLength()+30000);
-		assertEquals(lesson.getGroup(),lesson.getLessonStart(), lesson.getTeacher());
+		List<Lesson> lessonFiltered = lessonService.getLessonsForTeacherForPeriod("Sasha", lessonFromDB.getLessonStart()-30000, lessonFromDB.getLessonStart()+lesson.getLength()+30000);
+		assertEquals(lesson.getLength(),lessonFromDB.getLength());
 		lessonService.delete(lessonFromDB.getLessonId());
 	}
 		
