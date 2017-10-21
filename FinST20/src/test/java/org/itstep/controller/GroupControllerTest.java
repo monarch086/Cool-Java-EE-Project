@@ -61,9 +61,21 @@ public class GroupControllerTest {
 		assertEquals(HttpStatus.CREATED, response.getStatusCode());
 		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
 	}
-
+	
+	//NEW TEST METHOD
 	@Test
 	public void testUpdateGroup() {
+		Mockito.when(groupService.isUnique(Mockito.<Group>any())).thenReturn(false);			//changed true to false
+		Mockito.when(groupService.createAndUpdateGroup(Mockito.<Group>any())).thenReturn(group);
+		RequestEntity<Group> request = null;
+		try {
+			request = new RequestEntity<Group>(group, HttpMethod.PUT, new URI("/group"));		//set PUT method
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		ResponseEntity<Group> response = testRestTemplate.exchange(request, Group.class);
+		assertEquals(HttpStatus.CREATED, response.getStatusCode());
+		Mockito.verify(groupService, Mockito.times(1)).createAndUpdateGroup(Mockito.<Group>any());
 	}
 
 	@Test

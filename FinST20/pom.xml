@@ -3,19 +3,19 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.itstep</groupId>
-  <artifactId>FinST20</artifactId>
+  <artifactId>Cool_Java_Project</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>FinST20</name>
+  <name>Cool_Java_Project</name>
   <url>http://maven.apache.org</url>
 
   <properties>
 
 		<jdk.version>1.8</jdk.version>
-        <jre.version>1.8.0_144</jre.version>
+        <!--<jre.version>1.8.0_144</jre.version>-->
         
-        <product.version>0.1-SNAPSHOT</product.version>
+        <product.version>0.2-SNAPSHOT</product.version>
         <lib.property>lib</lib.property>
         <our.lib.groupIds.property>org.itstep</our.lib.groupIds.property>
         <output.directory>../build</output.directory>
